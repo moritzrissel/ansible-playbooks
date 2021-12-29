@@ -5,8 +5,4 @@
   gather_facts: yes
   tasks:
     - name: Update PiHole
-      register: updateoutput
       command: "pihole up"
-
-    - debug:
-        var: updateoutput.stdout_lines
