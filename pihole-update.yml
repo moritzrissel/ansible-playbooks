@@ -1,0 +1,12 @@
+---
+- hosts: server
+  become: true
+  become_user: root
+  gather_facts: yes
+  tasks:
+    - name: Update PiHole
+      register: updateoutput
+      command: "pihole up"
+
+    - debug:
+        var: updateoutput.stdout_lines
