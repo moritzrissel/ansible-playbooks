@@ -1,6 +1,8 @@
 ---
 - hosts: server
+  become: true
+  become_user: root
   gather_facts: yes
   tasks:
     - name: Update PiHole
-      command: "pihole up"
+      command: "pihole -up"
