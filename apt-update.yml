@@ -1,16 +1,22 @@
-- name: Update apt packages
-  apt:
-    force_apt_get: yes
-    autoclean: yes
-    autoremove: yes
-    update_cache: yes
-    upgrade: dist
+---
+- hosts: server
+  become: true
+  become_user: root
+  gather_facts: yes
+  tasks:
+  - name: Update apt packages
+    apt:
+      force_apt_get: yes
+      autoclean: yes
+      autoremove: yes
+      update_cache: yes
+      upgrade: dist
 
-- name: Check if reboot is needed
-  stat:
-    path: /var/run/reboot-required
-  register: reboot_required
+  - name: Check if reboot is needed
+    stat:
+      path: /var/run/reboot-required
+    register: reboot_required
 
-- name: Reboot
-  reboot:
-  when: reboot_required.stat.exists
+  - name: Reboot
+    reboot:
+    when: reboot_required.stat.exists
