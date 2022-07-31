@@ -6,3 +6,5 @@
   tasks:
     - name: Update PiHole
       command: "pihole -up"
+    - name: Update Grvity
+      command: "pihole -g"
